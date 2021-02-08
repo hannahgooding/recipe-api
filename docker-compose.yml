@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  app: # the name of the service
+    build:
+      context: . # the current directory
+    ports:
+      - "8000:8000" # host:image
+    volumes:
+    # allows updates from local machine into container in real time
+    # without restarting docker
+      - ./app:/app # local directory:image directory
+    command: > # > allows for new line, sh -c means shell command
+      sh -c "python manage.py runserver 0.0.0.0:8000"
